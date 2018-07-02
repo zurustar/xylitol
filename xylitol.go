@@ -80,7 +80,7 @@ func (this *Message) Parse(s *string, addr *net.UDPAddr) bool {
 	return true
 }
 
-func (this *Message)ParseStartLine(s *string) bool {
+func (this *Message) ParseStartLine(s *string) bool {
 	sl := re_start_line.FindStringSubmatchIndex(*s)
 	if len(sl) != 14 {
 		fmt.Println(len(sl))
@@ -113,14 +113,14 @@ func (this *Message) ParseHeader(s *string) bool {
 	return true
 }
 
-func (this *Message)IsRequest() bool {
+func (this *Message) IsRequest() bool {
 	if len(this.method) > 0 && len(this.requri) > 0 {
 		return true
 	}
 	return false
 }
 
-func (this *Message)IsResponse() bool {
+func (this *Message) IsResponse() bool {
 	if len(this.stcode) > 0 && len(this.reason) > 0 {
 		return true
 	}
@@ -128,9 +128,12 @@ func (this *Message)IsResponse() bool {
 }
 
 func ProcRequest(msg *Message) {
+	// insert via header
+
 }
 
 func ProcResponse(msg *Message) {
+	// remove via header
 }
 
 func main() {
